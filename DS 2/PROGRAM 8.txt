@@ -1,0 +1,49 @@
+/* Write a program to find Minimum and Maximum numbers from the
+given array using Recursion*\
+
+#include <stdio.h>
+
+void findMinMax(int a[], int n, int i, int *min, int *max)
+{
+    if(i == n)
+    {
+        return;
+    }
+
+    if(a[i] < *min)
+    {
+        *min = a[i];
+    }
+
+    if(a[i] > *max)
+    {
+        *max = a[i];
+    }
+
+    findMinMax(a, n, i + 1, min, max);
+}
+
+int main()
+{
+    int a[100], n, i;
+    int min, max;
+
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter the array elements:\n");
+    for(i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+
+    min = a[0];
+    max = a[0];
+
+    findMinMax(a, n, 0, &min, &max);
+
+    printf("Minimum = %d\n", min);
+    printf("Maximum = %d\n", max);
+
+    return 0;
+}

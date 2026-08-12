@@ -1,0 +1,134 @@
+/* Implement stack using array with following operations: push, pop,
+print, peek, peep, change, exit*\
+
+#include <stdio.h>
+#define MAX 10
+
+int stack[MAX];
+int top = -1;
+
+void push()
+{
+    int x;
+    if(top == MAX - 1)
+    {
+        printf("Stack Overflow\n");
+    }
+    else
+    {
+        printf("Enter element: ");
+        scanf("%d", &x);
+        top++;
+        stack[top] = x;
+    }
+}
+
+void pop()
+{
+    if(top == -1)
+    {
+        printf("Stack Underflow\n");
+    }
+    else
+    {
+        printf("Deleted element: %d\n", stack[top]);
+        top--;
+    }
+}
+
+void print()
+{
+    int i;
+    if(top == -1)
+    {
+        printf("Stack is Empty\n");
+    }
+    else
+    {
+        printf("Stack elements:\n");
+        for(i = top; i >= 0; i--)
+        {
+            printf("%d\n", stack[i]);
+        }
+    }
+}
+
+void peek()
+{
+    if(top == -1)
+    {
+        printf("Stack is Empty\n");
+    }
+    else
+    {
+        printf("Top element: %d\n", stack[top]);
+    }
+}
+
+void peep()
+{
+    int pos;
+    printf("Enter position from top: ");
+    scanf("%d", &pos);
+
+    if(top - pos + 1 < 0)
+    {
+        printf("Invalid Position\n");
+    }
+    else
+    {
+        printf("Element: %d\n", stack[top - pos + 1]);
+    }
+}
+
+void change()
+{
+    int pos, val;
+    printf("Enter position from top: ");
+    scanf("%d", &pos);
+
+    printf("Enter new value: ");
+    scanf("%d", &val);
+
+    if(top - pos + 1 < 0)
+    {
+        printf("Invalid Position\n");
+    }
+    else
+    {
+        stack[top - pos + 1] = val;
+    }
+}
+
+int main()
+{
+    int ch;
+
+    do
+    {
+        printf("\n1.Push");
+        printf("\n2.Pop");
+        printf("\n3.Print");
+        printf("\n4.Peek");
+        printf("\n5.Peep");
+        printf("\n6.Change");
+        printf("\n7.Exit");
+        printf("\nEnter your choice: ");
+        scanf("%d", &ch);
+
+        switch(ch)
+        {
+            case 1: push(); break;
+            case 2: pop(); break;
+            case 3: print(); break;
+            case 4: peek(); break;
+            case 5: peep(); break;
+            case 6: change(); break;
+            case 7: printf("Program Ended\n"); break;
+            default: printf("Invalid Choice\n");
+        }
+    }
+    while(ch != 7);
+
+    return 0;
+}

@@ -1,0 +1,57 @@
+/* Write a program to find the power of a given number using stack*\
+
+#include <stdio.h>
+#define MAX 100
+
+int stack[MAX];
+int top = -1;
+
+void push(int x)
+{
+    if(top == MAX - 1)
+    {
+        printf("Stack Overflow");
+    }
+    else
+    {
+        stack[++top] = x;
+    }
+}
+
+int pop()
+{
+    if(top == -1)
+    {
+        return 1;
+    }
+    else
+    {
+        return stack[top--];
+    }
+}
+
+int main()
+{
+    int base, power, i;
+    long int result = 1;
+
+    printf("Enter the base number: ");
+    scanf("%d", &base);
+
+    printf("Enter the power: ");
+    scanf("%d", &power);
+
+    for(i = 0; i < power; i++)
+    {
+        push(base);
+    }
+
+    while(top != -1)
+    {
+        result = result * pop();
+    }
+
+    printf("%d ^ %d = %ld", base, power, result);
+
+    return 0;
+}
